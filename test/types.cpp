@@ -1,3 +1,4 @@
+#include <climits>
 #include <gtest/gtest.h>
 #include <liquid/limits.h>
 #include <liquid/offset.h>
@@ -157,6 +158,48 @@ TEST(types, ptr_is_std_compatible)
     // Verify that the system's uintptr_t maximum
     // is equal to Liquid's LIQUID_UPTR_MAX
     EXPECT_EQ(UINTPTR_MAX, LIQUID_UPTR_MAX);
+}
+
+/**
+ * @test Test the compatibility of custom-defined offset values
+ *       with standard C++ data types.
+ *
+ * This test case checks the predefined offset values against standard limits of
+ * uintptr_t for unsigned offsets and intptr_t for signed offsets. The purpose
+ * is to ensure that the range of these offsets covers the whole range of the
+ * respective standard types.
+ *
+ * @subtest This subtest verifies that the minimum value for an unsigned offset
+ *          is zero, which is compatible with the standard definition of
+ *          uintptr_t minimum value.
+ *
+ * - EXPECT_EQ(0, LIQUID_UOFFSET_MIN)
+ *
+ * @subtest This subtest checks that the maximum value for an unsigned offset
+ *          is equivalent to the maximum value of uintptr_t,
+ *          ensuring the upper bound compatibility.
+ *
+ * - EXPECT_EQ(UINTPTR_MAX, LIQUID_UOFFSET_MAX)
+ *
+ * @subtest This subtest checks the minimum value for a signed offset
+ *          against the minimum limit of intptr_t,
+ *          confirming the lower bound compatibility.
+ *
+ * - EXPECT_EQ(INTPTR_MIN, LIQUID_SOFFSET_MIN)
+ *
+ * @subtest This subtest verifies that the maximum value for a signed offset is
+ *          the same as the maximum value allowed by intptr_t,
+ *          securing its upper limit compatibility.
+ *
+ * - EXPECT_EQ(INTPTR_MAX, LIQUID_SOFFSET_MAX)
+ */
+TEST(types, offset_is_std_compatible)
+{
+    EXPECT_EQ(0, LIQUID_UOFFSET_MIN);
+    EXPECT_EQ(UINTPTR_MAX, LIQUID_UOFFSET_MAX);
+
+    EXPECT_EQ(INTPTR_MIN, LIQUID_SOFFSET_MIN);
+    EXPECT_EQ(INTPTR_MAX, LIQUID_SOFFSET_MAX);
 }
 
 /**
