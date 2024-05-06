@@ -1,5 +1,5 @@
 /**
- * @file exception_handler.h
+ * @file exception-handler.h
  * @brief Exception handler interface for the Liquid library.
  *
  * This header file defines the interface for exception handling in the Liquid

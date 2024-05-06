@@ -10,10 +10,36 @@
 #ifndef LIQUID_EXCEPTION_H
 #define LIQUID_EXCEPTION_H
 
-/**
- * @brief Include the exception handler definitions.
- */
+#include "conditional.h"
 #include "exception-handler.h"
+
+/**
+ * @def LIQUID_EXCEPTION_RAISE_IF(expr, ret, ...)
+ * @brief Raises an exception if the given expression is true.
+ *
+ * This macro checks if the expression (expr) is true. If it is, it raises an
+ * exception with the provided arguments and returns the specified return value.
+ *
+ * @param expr The expression to evaluate.
+ * @param ret The value to return if the expression is true.
+ * @param ... The arguments to pass to the exception_raise function.
+ */
+#define LIQUID_EXCEPTION_RAISE_IF(expr, ret, ...)                              \
+    LIQUID_CONDITIONAL_IF(expr, exception_raise(__VA_ARGS__); return ret;)
+
+/**
+ * @def LIQUID_EXCEPTION_RAISE_IF_NOT(expr, ret, ...)
+ * @brief Raises an exception if the given expression is false.
+ *
+ * This macro checks if the expression (expr) is false. If it is, it raises an
+ * exception with the provided arguments and returns the specified return value.
+ *
+ * @param expr The expression to evaluate.
+ * @param ret The value to return if the expression is false.
+ * @param ... The arguments to pass to the exception_raise function.
+ */
+#define LIQUID_EXCEPTION_RAISE_IF_NOT(expr, ret, ...)                          \
+    LIQUID_CONDITIONAL_IF_NOT(expr, exception_raise(__VA_ARGS__); return ret;)
 
 /**
  * @brief Raises an exception with variadic arguments.
