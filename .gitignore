@@ -1,0 +1,9 @@
+.idea
+.vscode
+.vs
+out
+docs
+build
+buildDir
+cmake-build-debug
+cmake-build-release

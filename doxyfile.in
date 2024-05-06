@@ -1,0 +1,44 @@
+# Set this option to YES to generate documentation.
+GENERATE_DOCSET             = NO
+
+# Set this option to YES to generate HTML documentation.
+GENERATE_HTML               = YES
+
+# Set this option to YES to generate LATEX output.
+GENERATE_LATEX              = NO
+
+# Set this option to YES to generate documentation only for public members of the class.
+EXTRACT_PRIVATE             = NO
+
+# Set this option to YES to enable documentation for subelements.
+RECURSIVE                   = YES
+
+# Set this option to YES to enable internal methods and functions.
+EXTRACT_ALL                 = YES
+
+# Provide paths to your source code.
+INPUT                       = ../src ../inc
+
+# Set the filter to include only files with .cpp and .h extensions.
+FILE_PATTERNS               = *.c *.h
+
+# Specify where the documentation will be created.
+OUTPUT_DIRECTORY            = ../docs
+
+# Provide a title for your project.
+PROJECT_NAME                = @PROJECT_NAME@
+
+# Provide your project name to generate the QHG code.
+PROJECT_NUMBER              = @PROJECT_VERSION@
+
+# Set this option to YES to generate documentation for internal classes.
+INTERNAL_DOCS               = NO
+
+# Set this option to YES to add a list of all files to the documentation.
+FULL_PATH_NAMES             = YES
+
+# Set this option to YES to include only public class members in the documentation.
+EXTRACT_ALL                 = YES
+
+# Set this option to YES to compile and rework code to pull inner classes and structures.
+RECURSIVE                   = YES
