@@ -38,6 +38,11 @@ TEST(str, wstr_raw_cpy)
     // Buffer to copy the wide string into.
     wchar_t buf[1024] = {0};
 
+    // We fill the buffer with garbage so
+    // that we can check the correctness
+    // of inserting the null terminator.
+    memset(buf, 0xF7, ARRAY_RAW_SIZE(buf));
+
     // Copy the wide string "hello, world" into the buffer.
     WSTR_RAW_CPY(buf, ARRAY_RAW_SIZE(buf), L"hello, world");
 
@@ -59,6 +64,11 @@ TEST(str, str_cpy)
 {
     // Buffer to copy the string into.
     char buf[1024];
+
+    // We fill the buffer with garbage so
+    // that we can check the correctness
+    // of inserting the null terminator.
+    memset(buf, 0x7F, ARRAY_RAW_SIZE(buf));
 
     // Copy the string into the buffer.
     auto last_ptr = STR_CPY(buf, ARRAY_RAW_SIZE(buf),

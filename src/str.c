@@ -48,7 +48,10 @@ char *
 str_cpy(char *dest, usize_t dest_size, const char *src, usize_t src_size)
 {
     char *ptr = str_raw_cpy(dest, dest_size, src, src_size);
-    *ptr = '\0';
+    if (ptr)
+    {
+        *(ptr - 1) = '\0';
+    }
     return ptr;
 }
 
@@ -56,6 +59,9 @@ wchar_t *
 wstr_cpy(wchar_t *dest, usize_t dest_size, const wchar_t *src, usize_t src_size)
 {
     wchar_t *ptr = wstr_raw_cpy(dest, dest_size, src, src_size);
-    *ptr = L'\0';
+    if (ptr)
+    {
+        *(ptr - 1) = L'\0';
+    }
     return ptr;
 }
