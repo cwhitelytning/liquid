@@ -37,7 +37,7 @@
  *   @endcode
  *
  */
-TEST(types, base_types_is_std_compatible)
+TEST(limits, base_types_is_std_compatible)
 {
     // Testing max values compatibility.
     ASSERT_EQ(std::numeric_limits<schar_t>::max(),
@@ -103,7 +103,7 @@ TEST(types, base_types_is_std_compatible)
  * @note This test assumes that the relevant macros (e.g., LIQUID_UCHAR_MAX) are
  *       correctly defined in the concerned custom headers or configurations.
  */
-TEST(types, base_limits_is_std_compatible)
+TEST(limits, base_limits_is_std_compatible)
 {
     EXPECT_EQ(0, LIQUID_UCHAR_MIN);
     EXPECT_EQ(0, LIQUID_USHORT_MIN);
@@ -141,7 +141,7 @@ TEST(types, base_limits_is_std_compatible)
  *   compatible between standard uintptr_t and LIQUID_UPTR defined
  *   in the Liquid library.
  */
-TEST(types, ptr_is_std_compatible)
+TEST(limits, ptr_is_std_compatible)
 {
     // Verify that the system's intptr_t minimum
     // is equal to Liquid's LIQUID_SPTR_MIN
@@ -193,7 +193,7 @@ TEST(types, ptr_is_std_compatible)
  *
  * - EXPECT_EQ(INTPTR_MAX, LIQUID_SOFFSET_MAX)
  */
-TEST(types, offset_is_std_compatible)
+TEST(limits, offset_is_std_compatible)
 {
     EXPECT_EQ(0, LIQUID_UOFFSET_MIN);
     EXPECT_EQ(UINTPTR_MAX, LIQUID_UOFFSET_MAX);
@@ -215,7 +215,7 @@ TEST(types, offset_is_std_compatible)
  * - LIQUID_USIZE_MAX should equal SIZE_MAX,
  *                    the maximum value for size_t.
  */
-TEST(types, usize_is_std_compatible)
+TEST(limits, usize_is_std_compatible)
 {
     EXPECT_EQ(0, LIQUID_USIZE_MIN);
     EXPECT_EQ(SIZE_MAX, LIQUID_USIZE_MAX);
