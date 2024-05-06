@@ -15,6 +15,7 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 # Set source files.
 set(LIQUID_SOURCE_FILES
         src/array-raw.c
+        src/exception.c
         src/str.c
         src/fs.c
         src/os.c)
