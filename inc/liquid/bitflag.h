@@ -1,5 +1,5 @@
 /**
- * @file bitflag.hpp
+ * @file bitflag.h
  * @brief Utility macros for performing bit operations.
  */
 
