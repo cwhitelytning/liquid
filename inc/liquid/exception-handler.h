@@ -12,7 +12,7 @@
 #define LIQUID_EXCEPTION_HANDLER_H
 
 #include "os.h"
-#include <varargs.h>
+#include <stdarg.h>
 
 /**
  * @typedef exception_handler_fn

@@ -8,7 +8,7 @@ exception_raise(const errmsg_t message, ...)
     if (m_handler)
     {
         va_list args;
-        va_start(args);
+        va_start(args, message);
         m_handler(message, &args);
         va_end(args);
     }
