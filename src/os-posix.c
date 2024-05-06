@@ -14,7 +14,8 @@ usize_t
 error_message(errcode_t code, errmsg_t buffer, usize_t buffer_size)
 {
     const errchar_t *msg = strerror(code);
-    return msg == nullptr ? 0 : str_cpy(buffer, buffer_size, msg, 0);
+    return msg ? ARRAY_RAW_LENGTH(msg, str_cpy(buffer, buffer_size, msg, 0))
+               : 0;
 }
 
 void

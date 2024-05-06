@@ -1,7 +1,7 @@
 #include <liquid/str.h>
 #include <string.h>
 
-uoffset_t
+char *
 str_raw_cpy(char *dest, usize_t dest_size, const char *src, usize_t src_size)
 {
     if (!dest_size)
@@ -19,11 +19,10 @@ str_raw_cpy(char *dest, usize_t dest_size, const char *src, usize_t src_size)
         src_size = dest_size;
     }
 
-    array_raw_copy(dest, src, src_size);
-    return src_size;
+    return array_raw_copy(dest, src, src_size);
 }
 
-uoffset_t
+wchar_t *
 wstr_raw_cpy(wchar_t *dest, usize_t dest_size, const wchar_t *src,
              usize_t src_size)
 {
@@ -42,28 +41,21 @@ wstr_raw_cpy(wchar_t *dest, usize_t dest_size, const wchar_t *src,
         src_size = dest_size;
     }
 
-    array_raw_copy(dest, src, src_size * sizeof(wchar_t));
-    return src_size;
+    return array_raw_copy(dest, src, src_size * sizeof(wchar_t));
 }
 
-uoffset_t
+char *
 str_cpy(char *dest, usize_t dest_size, const char *src, usize_t src_size)
 {
-    const uoffset_t offset = str_raw_cpy(dest, dest_size, src, src_size);
-    if (offset)
-    {
-        dest[offset - 1] = '\0';
-    }
-    return offset;
+    char *ptr = str_raw_cpy(dest, dest_size, src, src_size);
+    *ptr = '\0';
+    return ptr;
 }
 
-uoffset_t
+wchar_t *
 wstr_cpy(wchar_t *dest, usize_t dest_size, const wchar_t *src, usize_t src_size)
 {
-    const uoffset_t offset = wstr_raw_cpy(dest, dest_size, src, src_size);
-    if (offset)
-    {
-        dest[offset - 1] = L'\0';
-    }
-    return offset;
+    wchar_t *ptr = wstr_raw_cpy(dest, dest_size, src, src_size);
+    *ptr = L'\0';
+    return ptr;
 }

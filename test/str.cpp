@@ -61,12 +61,12 @@ TEST(str, str_cpy)
     char buf[1024];
 
     // Copy the string into the buffer.
-    auto pos = STR_CPY(buf, ARRAY_RAW_SIZE(buf),
-                       "Lorem Ipsum is simply dummy text of the printing "
-                       "and typesetting industry.");
+    auto last_ptr = STR_CPY(buf, ARRAY_RAW_SIZE(buf),
+                            "Lorem Ipsum is simply dummy text of the printing "
+                            "and typesetting industry.");
 
     // Assert that the return value indicates successful copying.
-    ASSERT_EQ(pos, 75);
+    ASSERT_EQ(ARRAY_RAW_LENGTH(buf, last_ptr), 75);
 }
 
 /**
@@ -85,10 +85,11 @@ TEST(str, wstr_cpy)
     wchar_t buf[1024];
 
     // Copy the wide string into the buffer.
-    auto pos = WSTR_CPY(buf, ARRAY_RAW_SIZE(buf),
-                        L"Lorem Ipsum is simply dummy text of the printing "
-                        "and typesetting industry.");
+    auto last_ptr =
+        WSTR_CPY(buf, ARRAY_RAW_SIZE(buf),
+                 L"Lorem Ipsum is simply dummy text of the printing "
+                 "and typesetting industry.");
 
     // Assert that the return value indicates successful copying.
-    ASSERT_EQ(pos, 75);
+    ASSERT_EQ(ARRAY_RAW_LENGTH(buf, last_ptr), 75);
 }

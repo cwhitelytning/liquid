@@ -2,7 +2,6 @@
 #define LIQUID_STR_H
 
 #include "array-raw.h"
-#include "offset.h"
 #include "usize.h"
 
 #ifndef __cplusplus
@@ -94,7 +93,7 @@ extern "C"
  *
  * @return Number of bytes copied.
  */
-uoffset_t
+char *
 str_raw_cpy(char *dest, usize_t dest_size, const char *src, usize_t src_size);
 
 /**
@@ -109,7 +108,7 @@ str_raw_cpy(char *dest, usize_t dest_size, const char *src, usize_t src_size);
  *
  * @return Number of bytes copied.
  */
-uoffset_t
+wchar_t *
 wstr_raw_cpy(wchar_t *dest, usize_t dest_size, const wchar_t *src,
              usize_t src_size);
 
@@ -125,7 +124,7 @@ wstr_raw_cpy(wchar_t *dest, usize_t dest_size, const wchar_t *src,
  *
  * @return Number of bytes copied.
  */
-uoffset_t
+char *
 str_cpy(char *dest, usize_t dest_size, const char *src, usize_t src_size);
 
 /**
@@ -140,7 +139,7 @@ str_cpy(char *dest, usize_t dest_size, const char *src, usize_t src_size);
  *
  * @return Number of bytes copied.
  */
-uoffset_t
+wchar_t *
 wstr_cpy(wchar_t *dest, usize_t dest_size, const wchar_t *src,
          usize_t src_size);
 
