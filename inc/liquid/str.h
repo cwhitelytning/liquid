@@ -2,11 +2,24 @@
 #define LIQUID_STR_H
 
 #include "array-raw.h"
-#include "usize.h"
 
 #ifndef __cplusplus
     #include <wchar.h>
 #endif
+
+/**
+ * @def STR_RAW_SIZE(str)
+ * Calculates the size of a string literal, excluding the null terminator.
+ *
+ * @param str The string literal whose size is to be determined.
+ * @return The size of the string literal without the null terminator.
+ *
+ * @note This macro uses ARRAY_RAW_SIZE to determine the size of the string
+ *       and subtracts 1 to exclude the null terminator. It is intended for
+ *       use with string literals, not pointers to strings.
+ */
+
+#define STR_RAW_SIZE(str) (ARRAY_RAW_SIZE(str) - 1)
 
 /**
  * @def STR_RAW_CPY(dest, dest_size, src)
