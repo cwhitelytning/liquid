@@ -47,11 +47,24 @@ extern "C"
 #endif // __cplusplus
 
 /**
- * @brief Raise an exception with a specific message and length.
- * @param message The error message.
+ * @brief Raises an exception with a given message and length.
+ *
+ * @param message The error message associated with the exception.
  * @param len The length of the error message.
+ * @return The length of the message that was processed by the exception
+ *         handler, similar to the return value of the fwrite function.
+ *
+ * @note The function delegates the handling of the exception
+ *       to the current exception handler pointed to by m_handler.
+ *
+ *       The return value is analogous to fwrite,
+ *       indicating the length of the message
+ *       that was successfully processed.
+ *
+ *       If handler is not set, the function returns 0,
+ *       indicating no handling was performed.
  */
-void
+usize_t
 exception_raise(const errmsg_t message, usize_t len);
 
 /**

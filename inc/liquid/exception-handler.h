@@ -13,16 +13,21 @@
 #include "os.h"
 
 /**
- * @typedef exception_handler_fn
- * @brief Function pointer type for exception handling.
+ * @typedef usize_t(exception_handler_fn)(const errmsg_t message, usize_t len)
+ * @brief A type definition for a function pointer
+ *        that represents an exception handler.
  *
- * This function pointer is used to reference a custom exception handler
- * function. The function will receive an error message and its length
- * as parameters.
- *
- * @param message The error message to be handled.
+ * @param message The error message associated with the exception.
  * @param len The length of the error message.
+ * @return The length of the message that was processed by the handler,
+ *         analogous to the return value of fwrite.
+ *
+ * @note This handler function is intended to process an exception
+ *       and return the length of the message that was handled.
+ *
+ *       It is similar in behavior to the fwrite function,
+ *       which returns the number of elements successfully written.
  */
-typedef void(exception_handler_fn)(const errmsg_t message, usize_t len);
+typedef usize_t(exception_handler_fn)(const errmsg_t message, usize_t len);
 
 #endif // LIQUID_EXCEPTION_HANDLER_H
