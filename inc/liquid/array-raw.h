@@ -1,3 +1,12 @@
+/**
+ * @file array-raw.h
+ * @brief Utility functions for raw array operations.
+ *
+ * This header provides macros and functions for performing low-level
+ * operations on raw arrays such as copying memory blocks and calculating
+ * array sizes.
+ */
+
 #ifndef LIQUID_ARRAY_RAW_H
 #define LIQUID_ARRAY_RAW_H
 
