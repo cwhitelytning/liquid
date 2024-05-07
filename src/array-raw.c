@@ -21,7 +21,7 @@ array_raw_pos(const void *begin, const void *end, uchar_t value)
     const uchar_t *ptr_begin = (const uchar_t *)begin;
     const uchar_t *ptr_end = (const uchar_t *)end;
 
-    while (ptr_begin == ptr_end && *ptr_begin != value)
+    while (ptr_begin != ptr_end && *ptr_begin != value)
     {
         ++ptr_begin;
     }

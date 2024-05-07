@@ -47,3 +47,48 @@ TEST(array_raw_copy, dest_or_src_is_nullptr)
     EXPECT_EQ(array_raw_copy(nullptr, src, n), nullptr);
     EXPECT_EQ(array_raw_copy(src, nullptr, n), nullptr);
 }
+
+/**
+ * @test Test case for finding a value within an array.
+ *
+ * This test verifies that the array_raw_pos function can successfully find
+ * the position of a given value within an array.
+ */
+TEST(array_raw_copy, find_value)
+{
+    uchar_t array[] = {1, 2, 3, 4, 5};
+    uchar_t value = 3;
+
+    const auto *result = array_raw_pos(array, array + 5, value);
+    EXPECT_EQ(array + 2, result);
+}
+
+/**
+ * @test Test case for value not found within an array.
+ *
+ * This test ensures that the array_raw_pos function returns nullptr
+ * when the specified value is not found within the array.
+ */
+TEST(array_raw_copy, value_not_found)
+{
+    uchar_t array[] = {1, 2, 3, 4, 5};
+    uchar_t value = 6;
+
+    const auto *result = array_raw_pos(array, array + 5, value);
+    EXPECT_EQ(nullptr, result);
+}
+
+/**
+ * @test Test case for an empty range within an array.
+ *
+ * This test checks that the array_raw_pos function returns nullptr
+ * when the range specified is empty, meaning there is no valid range to search.
+ */
+TEST(array_raw_copy, empty_range)
+{
+    uchar_t array[] = {1, 2, 3, 4, 5};
+    uchar_t value = 1;
+
+    const auto *result = array_raw_pos(array, array, value);
+    EXPECT_EQ(nullptr, result);
+}

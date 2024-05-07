@@ -42,6 +42,23 @@ extern "C"
 void *
 array_raw_copy(void *dest, const void *src, usize_t n);
 
+/**
+ * @brief Find the position of a value within an array.
+ *
+ * This function searches for the first occurrence of a specified value within
+ * an array, starting from 'begin' and ending at 'end'. If the value is found,
+ * a pointer to the location of the value in the array is returned.
+ * If the value is not found, the function returns nullptr.
+ *
+ * @param begin A pointer to the beginning of the array.
+ * @param end A pointer to the end of the array.
+ * @param value The value to search for in the array.
+ * @return A void pointer to the found value within the array
+ *         or nullptr if not found.
+ */
+const void *
+array_raw_pos(const void *begin, const void *end, uchar_t value);
+
 #ifdef __cplusplus
 }
 #endif // __cplusplus

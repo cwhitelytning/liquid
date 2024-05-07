@@ -30,24 +30,6 @@
  */
 #define LIQUID_PTR_DIFF(start, end) ((end) - (start))
 
-/**
- * @def INVALID_POINTER
- * @brief Macro representing an invalid pointer.
- *
- * This macro is defined as a null pointer, which is intended to be used in
- * contexts where a pointer needs to explicitly signify that it is invalid
- * or points to nothing.
- *
- * Using INVALID_POINTER can enhance code readability and maintainability
- * by providing a more semantic approach to dealing with null pointers
- * in the codebase.
- *
- * @note The macro uses nullptr which is a keyword introduced in C++11 that
- *       denotes the null pointer value. It is type-safe as opposed to NULL
- *       or 0.
- */
-#define INVALID_POINTER nullptr
-
 #if defined(LIQUID_TARGET_PLATFORM)
     #if LIQUID_TARGET_PLATFORM == 64
         /**
