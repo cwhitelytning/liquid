@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <liquid/args.h>
 #include <liquid/exception.h>
 #include <liquid/str.h>
 
@@ -31,6 +32,8 @@ TEST(exception, raise_message)
     exception_set_handler(
         [](const errmsg_t message, usize_t len) -> usize_t
         {
+            // Clearing the buffer.
+            buffer.clear();
             // Appending the message to the buffer and returning its new size.
             buffer.append(message, len - 1);
             return buffer.size();
@@ -41,4 +44,18 @@ TEST(exception, raise_message)
 
     // Expecting the buffer to contain the test message.
     EXPECT_STREQ(buffer.c_str(), test_message);
+}
+
+TEST(exception, raise_message_with_args)
+{
+    exception_set_handler(
+        [](const errmsg_t message, usize_t len) -> usize_t
+        {
+            buffer.clear();
+            buffer.append(message, len - 1);
+            return buffer.size();
+        });
+
+    LIQUID_EXCEPTION_RAISE(LIQUID_ARGS_STRINGIFY(args : 1 2 3 4 5 6 7 8 9 10));
+    EXPECT_STREQ(buffer.c_str(), "args : 1 2 3 4 5 6 7 8 9 10");
 }

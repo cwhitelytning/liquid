@@ -25,28 +25,16 @@
 #define LIQUID_ARGS_CONCAT(x, y) x##y
 
 /**
- * @def LIQUID_ARG_STRINGIFY(x)
- * @brief Converts an argument to a string literal.
- *
- * This macro converts a preprocessor argument to a string literal.
- * It is useful for creating string representations of macro values.
- *
- * @param x The argument to stringify.
- * @return The string literal of the argument.
- */
-#define LIQUID_ARG_STRINGIFY(x) #x
-
-/**
  * @def LIQUID_ARGS_STRINGIFY(...)
- * @brief Converts multiple arguments to a string literal.
+ * @brief Stringifies the given argument(s).
  *
- * This macro converts multiple preprocessor arguments to a single
- * string literal, after they are passed as a single argument to
- * LIQUID_ARG_STRINGIFY.
+ * This macro takes any number of arguments and uses the stringify operator
+ * to turn them into a single string. This is useful for creating strings
+ * out of tokens or macro values.
  *
- * @param ... The arguments to stringify.
- * @return The string literal of the arguments.
+ * @param ... Variable number of arguments to be stringified.
+ * @return A string representation of the given arguments.
  */
-#define LIQUID_ARGS_STRINGIFY(...) LIQUID_ARG_STRINGIFY((__VA_ARGS__))
+#define LIQUID_ARGS_STRINGIFY(...) #__VA_ARGS__
 
 #endif // LIQUID_ARGS_H
