@@ -119,6 +119,7 @@ FetchContent_MakeAvailable(googletest)
 
 # Adding test source files
 add_executable(tests
+        test/array_raw.cpp
         test/exception.cpp
         test/limits.cpp
         test/os.cpp
