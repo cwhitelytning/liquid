@@ -11,33 +11,10 @@
  */
 #define ARRAY_RAW_SIZE(buffer) (sizeof(buffer) / sizeof(buffer[0]))
 
-/**
- * @brief Calculate the raw length of an array segment.
- *
- * This macro calculates the difference between two pointers or indices,
- * typically representing the start and end of an array segment.
- *
- * It is a straightforward measure of the number of elements between
- * the start and end, excluding the element pointed by 'end'.
- *
- * @param start The pointer or index to the beginning of the array segment.
- * @param end The pointer or index to the end of the array segment.
- *
- * @return The number of elements between start and end.
- *
- * @note This macro does not perform any type checking
- *       and assumes that end is greater than or equal to start.
- *
- *       If the pointers are not from the same array
- *       or compatible types of arrays, the behavior is undefined.
- *
- * Example usage:
- * @code{.c}
- * int array[10];
- * int length = ARRAY_RAW_LENGTH(array, array + 5); // length will be 5
- * @endcode
- */
-#define ARRAY_RAW_LENGTH(start, end) ((end) - (start))
+#ifdef __cplusplus
+extern "C"
+{
+#endif // __cplusplus
 
 /**
  * @brief Copies 'n' bytes from source to destination.
@@ -55,5 +32,9 @@
  */
 void *
 array_raw_copy(void *dest, const void *src, usize_t n);
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
 
 #endif // LIQUID_ARRAY_RAW_H

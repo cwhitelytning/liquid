@@ -17,6 +17,20 @@
 #include "nullptr.h"
 
 /**
+ * @def LIQUID_PTR_DIFF(start, end)
+ * @brief Compute the pointer difference between two array elements.
+ *
+ * This macro calculates the difference between two pointers, typically
+ * representing the start and end positions in an array. It is used to
+ * determine the number of elements between the two pointers.
+ *
+ * @param start The starting pointer of the array segment.
+ * @param end The ending pointer of the array segment.
+ * @return The number of elements between start and end.
+ */
+#define LIQUID_PTR_DIFF(start, end) ((end) - (start))
+
+/**
  * @def INVALID_POINTER
  * @brief Macro representing an invalid pointer.
  *

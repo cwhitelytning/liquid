@@ -76,7 +76,7 @@ TEST(str, str_cpy)
                             "and typesetting industry.");
 
     // Assert that the return value indicates successful copying.
-    ASSERT_EQ(ARRAY_RAW_LENGTH(buf, last_ptr), 75);
+    ASSERT_EQ(LIQUID_PTR_DIFF(buf, last_ptr), 75);
 }
 
 /**
@@ -101,5 +101,5 @@ TEST(str, wstr_cpy)
                  "and typesetting industry.");
 
     // Assert that the return value indicates successful copying.
-    ASSERT_EQ(ARRAY_RAW_LENGTH(buf, last_ptr), 75);
+    ASSERT_EQ(LIQUID_PTR_DIFF(buf, last_ptr), 75);
 }
