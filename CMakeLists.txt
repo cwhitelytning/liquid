@@ -124,6 +124,7 @@ add_executable(tests
         test/os.cpp
         test/fs.cpp
         test/str.cpp
+        test/args.cpp
         test/gtest.cpp)
 
 # The compilation target must include directories
