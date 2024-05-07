@@ -1,70 +1,68 @@
 /**
  * @file exception.h
- * @brief Exception handling mechanisms for the Liquid library.
+ * @brief Exception handling utilities for the Liquid library.
  *
- * This header file provides the interface for raising and handling exceptions
- * in the Liquid library. It allows setting custom exception handlers and
- * raising exceptions with or without additional arguments.
+ * Provides macros and functions for raising and handling exceptions.
+ * This file includes conditional checks and exception handling mechanisms
+ * that can be used throughout the Liquid project.
  */
 
 #ifndef LIQUID_EXCEPTION_H
 #define LIQUID_EXCEPTION_H
 
+#include "array-raw.h"
 #include "conditional.h"
 #include "exception-handler.h"
 
 /**
- * @def LIQUID_EXCEPTION_RAISE_IF(expr, ret, ...)
- * @brief Raises an exception if the given expression is true.
- *
- * This macro checks if the expression (expr) is true. If it is, it raises an
- * exception with the provided arguments and returns the specified return value.
- *
- * @param expr The expression to evaluate.
- * @param ret The value to return if the expression is true.
- * @param ... The arguments to pass to the exception_raise function.
+ * @def LIQUID_EXCEPTION_RAISE(msg)
+ * @brief Raise an exception with a given message.
+ * @param msg The error message to be used when raising the exception.
  */
-#define LIQUID_EXCEPTION_RAISE_IF(expr, ret, ...)                              \
-    LIQUID_CONDITIONAL_IF(expr, exception_raise(__VA_ARGS__); return ret;)
+#define LIQUID_EXCEPTION_RAISE(msg) exception_raise(msg, ARRAY_RAW_SIZE(msg))
 
 /**
- * @def LIQUID_EXCEPTION_RAISE_IF_NOT(expr, ret, ...)
- * @brief Raises an exception if the given expression is false.
- *
- * This macro checks if the expression (expr) is false. If it is, it raises an
- * exception with the provided arguments and returns the specified return value.
- *
- * @param expr The expression to evaluate.
- * @param ret The value to return if the expression is false.
- * @param ... The arguments to pass to the exception_raise function.
+ * @def LIQUID_EXCEPTION_RAISE_IF(expr, ret, msg)
+ * @brief Raise an exception if a condition is true and return a value.
+ * @param expr The condition to evaluate.
+ * @param ret The value to return if the condition is true.
+ * @param msg The error message to be used when raising the exception.
  */
-#define LIQUID_EXCEPTION_RAISE_IF_NOT(expr, ret, ...)                          \
-    LIQUID_CONDITIONAL_IF_NOT(expr, exception_raise(__VA_ARGS__); return ret;)
+#define LIQUID_EXCEPTION_RAISE_IF(expr, ret, msg)                              \
+    LIQUID_CONDITIONAL_IF(expr, LIQUID_EXCEPTION_RAISE(msg); return ret;)
 
 /**
- * @brief Raises an exception with variadic arguments.
- *
- * This function checks if a custom exception handler is set and, if so,
- * initializes a va_list to pass the variadic arguments to the handler.
- * It is a convenient way to raise exceptions with additional context
- * provided by the variadic arguments.
- *
- * @param message The error message associated with the exception.
- * @param ... Variadic arguments providing additional context for the exception.
+ * @def LIQUID_EXCEPTION_RAISE_IF_NOT(expr, ret, msg)
+ * @brief Raise an exception if a condition is false and return a value.
+ * @param expr The condition to evaluate.
+ * @param ret The value to return if the condition is false.
+ * @param msg The error message to be used when raising the exception.
+ */
+#define LIQUID_EXCEPTION_RAISE_IF_NOT(expr, ret, msg)                          \
+    LIQUID_CONDITIONAL_IF_NOT(expr, LIQUID_EXCEPTION_RAISE(msg); return ret;)
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif // __cplusplus
+
+/**
+ * @brief Raise an exception with a specific message and length.
+ * @param message The error message.
+ * @param len The length of the error message.
  */
 void
-exception_raise(const errmsg_t message, ...);
+exception_raise(const errmsg_t message, usize_t len);
 
 /**
- * @brief Sets a new exception handler.
- *
- * This function sets a new exception handler and returns the previous one.
- * It allows for custom handling of exceptions throughout the Liquid library.
- *
- * @param handler A pointer to the new exception handler function.
- * @return A pointer to the previous exception handler function.
+ * @brief Set a new exception handler.
+ * @param handler A pointer to the function that will handle exceptions.
  */
-exception_handler_fn *
+void
 exception_set_handler(exception_handler_fn *handler);
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
 
 #endif // LIQUID_EXCEPTION_H

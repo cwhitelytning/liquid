@@ -3,21 +3,13 @@
 exception_handler_fn *m_handler = nullptr;
 
 void
-exception_raise(const errmsg_t message, ...)
+exception_raise(const errmsg_t message, usize_t len)
 {
-    if (m_handler)
-    {
-        va_list args;
-        va_start(args, message);
-        m_handler(message, &args);
-        va_end(args);
-    }
+    return m_handler(message, len);
 }
 
-exception_handler_fn *
+void
 exception_set_handler(exception_handler_fn *handler)
 {
-    exception_handler_fn *prev = m_handler;
     m_handler = handler;
-    return prev;
 }
