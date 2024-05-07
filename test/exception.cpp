@@ -1,4 +1,3 @@
-#include <cstdio>
 #include <gtest/gtest.h>
 #include <liquid/exception.h>
 
@@ -9,7 +8,7 @@ TEST(exception, raise_message)
     exception_set_handler(
         [](const char *message, usize_t len)
         {
-            buffer = message;
+            buffer.append(message, len - 1);
         });
 
     LIQUID_EXCEPTION_RAISE("Test message");
