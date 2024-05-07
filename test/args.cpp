@@ -22,8 +22,8 @@ TEST(args, concating_numeric_values)
 /**
  * @brief Test converting numeric values to strings.
  *
- * Verifies the functionality of LIQUID_ARG_STRINGIFY and LIQUID_ARGS_STRINGIFY
- * macros by checking their output against expected string literals.
+ * Verifies the functionality of LIQUID_ARGS_STRINGIFY macros
+ * by checking their output against expected string literals.
  *
  * @test
  * - Converts single values (1, 100, -10) to their string representations.
