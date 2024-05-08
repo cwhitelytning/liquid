@@ -53,11 +53,34 @@ array_raw_copy(void *dest, const void *src, usize_t n);
  * @param begin A pointer to the beginning of the array.
  * @param end A pointer to the end of the array.
  * @param value The value to search for in the array.
+ *
  * @return A void pointer to the found value within the array
  *         or nullptr if not found.
  */
 const void *
 array_raw_pos(const void *begin, const void *end, uchar_t value);
+
+/**
+ * @brief Compares two arrays of bytes byte-by-byte.
+ *
+ * This function compares two given arrays byte-by-byte up to the end of either
+ * array. Comparison stops when a mismatch is found or when either of the array
+ * ends are reached.
+ *
+ * @param arr1_begin Pointer to the beginning of the first array.
+ * @param arr1_end Pointer to the end of the first array.
+ * @param arr2_begin Pointer to the beginning of the second array.
+ * @param arr2_end Pointer to the end of the second array.
+ *
+ * @return If there is a mismatch, returns a pointer to the current element
+ *         in the first array at the point where the mismatch occurs.
+ *
+ *         If no mismatch is found, returns nullptr, indicating complete
+ *         matching of array contents up to the length of the shorter array.
+ */
+const void *
+array_raw_compare(const void *arr1_begin, const void *arr1_end,
+                  const void *arr2_begin, const void *arr2_end);
 
 #ifdef __cplusplus
 }

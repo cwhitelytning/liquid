@@ -92,3 +92,74 @@ TEST(array_raw_copy, empty_range)
     const auto *result = array_raw_pos(array, array, value);
     EXPECT_EQ(nullptr, result);
 }
+
+/**
+ * @test Test case for array_raw_compare with equal arrays.
+ *
+ * This test case checks if the array_raw_compare function returns nullptr
+ * when comparing two identical arrays, indicating that they are equal.
+ */
+TEST(array_raw_compare, equal_arrays)
+{
+    int arr1[] = {1, 2, 3, 4, 5};
+    int arr2[] = {1, 2, 3, 4, 5};
+
+    const void *result =
+        array_raw_compare(arr1, arr1 + sizeof(arr1) / sizeof(arr1[0]), arr2,
+                          arr2 + sizeof(arr2) / sizeof(arr2[0]));
+
+    EXPECT_EQ(result, nullptr);
+}
+
+/**
+ * @test Test case for array_raw_compare with different arrays.
+ *
+ * This test case checks if the array_raw_compare function returns a pointer
+ * to the first differing element when comparing two arrays that differ at
+ * one position.
+ */
+TEST(array_raw_compare, different_arrays)
+{
+    int arr1[] = {1, 2, 3, 4, 5};
+    int arr2[] = {1, 2, 3, 4, 6};
+
+    const void *result =
+        array_raw_compare(arr1, arr1 + sizeof(arr1) / sizeof(arr1[0]), arr2,
+                          arr2 + sizeof(arr2) / sizeof(arr2[0]));
+
+    EXPECT_EQ(result, arr1 + 4);
+}
+
+/**
+ * @test Test case for array_raw_compare with arrays of different lengths.
+ *
+ * This test case checks if the array_raw_compare function returns nullptr
+ * when comparing two arrays of different lengths,
+ * indicating that they cannot be equal.
+ */
+TEST(array_raw_compare, different_length_arrays)
+{
+    int arr1[] = {1, 2, 3, 4, 5};
+    int arr2[] = {1, 2, 3};
+
+    const void *result =
+        array_raw_compare(arr1, arr1 + sizeof(arr1) / sizeof(arr1[0]), arr2,
+                          arr2 + sizeof(arr2) / sizeof(arr2[0]));
+
+    EXPECT_EQ(result, nullptr);
+}
+
+/**
+ * @test Test case for array_raw_compare with empty arrays.
+ *
+ * This test case checks if the array_raw_compare function returns nullptr
+ * when comparing two empty arrays, indicating that they are trivially equal.
+ */
+TEST(array_raw_compare, empty_arrays)
+{
+    int arr1[] = {};
+    int arr2[] = {};
+
+    const void *result = array_raw_compare(arr1, arr1, arr2, arr2);
+    EXPECT_EQ(result, nullptr);
+}
